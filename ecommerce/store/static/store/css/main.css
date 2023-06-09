@@ -1,0 +1,184 @@
+.navbar{
+    background-color: #004C99!important;
+}
+
+#cart-total{
+    display: inline-block;
+    position: absolute;
+	text-align: center;
+	color: white;
+	background-color: red;
+	width: 15px;
+	height: 20px;
+	border-radius: 50%;
+	font-size: 12px;
+    
+}
+
+.navbar-brand{
+    color: white;
+}
+
+.navbar-brand:hover{
+    color: #66B3FF;
+}
+
+.nav-item .nav-link{
+    color: white!important;
+}
+
+
+.form-inline .btn{
+    background-color: white;
+    border: white;
+    color: #004C99;
+}
+
+.form-inline .btn:hover{
+    background-color: #66B3FF;
+    color: white;
+}
+
+.fa-sharp{
+    color: white;
+}
+
+.fa-sharp:hover{
+    color: #FFA500;
+}
+
+.card{
+    border: solid 1px #004C99;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-view{
+    background-color:#004C99;
+    color: white;
+}
+
+.btn-view:hover{
+    color: #004C99;
+    background-color: white;
+    border: solid 1px #004C99;
+}
+
+.btn-car{
+    background-color: #FFA500;
+    color: white;
+}
+
+.btn-car:hover{
+    color: #FFA500;
+    background-color: white;
+    border: solid 1px #FFA500;
+}
+
+.card-header{
+    background-color: white;
+}
+
+.card-header .btn{
+    background-color: #FFA500;
+    color: white;
+}
+
+.card-header .btn:hover{
+    color: #FFA500;
+    background-color: white;
+    border: solid 1px #FFA500;
+}
+
+#btn-checkout{
+    background-color:#004C99;
+    color: white;
+}
+
+#btn-checkout:hover{
+    color: #004C99;
+    background-color: white;
+    border: solid 1px #004C99;
+}
+.row-img{
+    width: 120px;
+}
+
+#info2{
+    display: flex;
+}
+
+#info2 .number{
+    margin-bottom: 64px;
+}
+
+.tr{
+    align-items: center;
+}
+
+.icons-up-down{
+    position: relative;
+}
+
+.sort-down{
+    position: absolute;
+    top: 0;
+    margin-top: 3px;
+}
+
+.info-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#info-user-center{
+    margin-bottom: 10px;
+}
+
+#coutry{
+    margin-top: 10px;
+}
+
+#continue{
+    background-color: #66B3FF;
+    color: white;
+}
+
+#continue:hover{
+    background-color: white;
+    color: #66B3FF;
+    border: solid 1px #66B3FF;
+}
+
+.btn-back-car{
+    background-color: #FFA500;
+    color: white;
+}
+
+.btn-back-car:hover{
+    color: #FFA500;
+    background-color: white;
+    border: solid 1px #FFA500;
+}
+
+input{
+    border: solid 1px #a7a3a3;
+    padding: 6px;
+}
+
+.paypal{
+    padding: 10px;
+    margin-top: 10px;
+    width: 300px;
+    display: none;
+}
+
+.info3{
+    display: flex;
+    justify-content: space-around;
+}
+
+.info4{
+    margin-top: 10px;
+    font-weight: bolder;
+}

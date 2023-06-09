@@ -1,0 +1,83 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card" style="width: 35rem;">
+            <div class="card-body">
+                <form action="" id="form">
+                    <div class="info-user">
+                        <div>
+                            <input required type="text" name="name" id="name" placeholder="Digite seu nome">
+                        </div>
+                        <div>
+                            <input required type="email" name="email" id="email" placeholder="Digite seu e-mail">
+                        </div>
+                    </div>
+                    <div id="shipping-info">
+                        <hr>
+                        <p>Endereço de Entrega</p>
+                        <hr>
+                        <div class="info-user" id="info-user-center" >
+                            <div>
+                                <input type="text" name="address" id="address" placeholder="Digite seu endereço">
+                            </div>
+                            <div>
+                                <input type="text" name="city" id="city" placeholder="Digite sua cidade">
+                            </div>
+                        </div>
+                        <div class="info-user">
+                            <div>
+                                <input type="text" name="state" id="state" placeholder="Digite seu estado">
+                            </div>
+                            <div>
+                                <input type="text" name="zipcode" id="zipcode" placeholder="Digite seu código postal">
+                            </div>
+                        </div>
+                        <div>
+                            <input type="text" name="country" id="coutry" placeholder="Digite o Código">
+                        </div>
+                    </div>
+                    <hr>
+                    <input type="submit" name="continue" id="continue" class="btn btn-block w-100" value="Continuar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">
+                <a class="btn btn-back-car" href="{% url 'cart' %}"><i class="fa-solid fa-arrow-left mx-2"></i>Voltar para o carrinho</a>
+                <hr>
+                <h4 class="card-title">Resumo da pedido</h4>
+                <hr>
+                <div class="info3">
+                    <div>
+                        <img class="row-img" src="{% static 'store/images/mousepad.png' %}" alt="">
+                    </div>
+                    <div>
+                        <p>Produto1</p>
+                    </div>
+                    <div>
+                        <p>R$ 20,00</p>
+                    </div>
+                    <div>
+                        <p>2x</p>
+                    </div>
+                </div>
+                <div class="info4">
+                    <div>Itens:</div>
+                    <div>Total: R$</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card paypal">
+            <small>Opções Paypal</small>
+        </div>
+    </div>
+</div>
+{% endblock %}
