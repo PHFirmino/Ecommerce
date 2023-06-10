@@ -35,25 +35,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr class="tr" >
-                        <td><img src="{% static 'img/mousepad.png' %}" class="row-img" alt="..."></td>
-                        <td scope="row"><strong>Produto1</strong></td>
-                        <td>R$20,00</td>
-                        <td id="info2">
-                            <div class="number">
-                                <span id="number-quantity" class="mx-2">2</span>
-                            </div>
-                            <div class="icons-up-down">
-                                <div class="sort-up">
-                                    <i class="fa-solid fa-sort-up"></i>
-                                </div>
-                                <div class="sort-down">
-                                    <i class="fa-solid fa-sort-down"></i>
-                                </div>
-                            </div>
-                        </td>
-                        <td>R$40,00</td>
-                    </tr>
+                        {% for item in itens %}
+                            <tr class="tr" >
+                                <td><img src="{{ item.produto.imagemURL }}" class="row-img" alt="..."></td>
+                                <td scope="row"><strong>{{ item.produto.nome }}</strong></td>
+                                <td>{{ item.produto.preco|floatformat:2 }}</td>
+                                <td id="info2">
+                                    <div class="number">
+                                        <span id="number-quantity" class="mx-2">{{ item.quantidade }}</span>
+                                    </div>
+                                    <div class="icons-up-down">
+                                        <div class="sort-up">
+                                            <i class="fa-solid fa-sort-up"></i>
+                                        </div>
+                                        <div class="sort-down">
+                                            <i class="fa-solid fa-sort-down"></i>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ item.valor_total|floatformat:2 }}</td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>     

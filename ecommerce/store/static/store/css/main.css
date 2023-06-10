@@ -1,5 +1,6 @@
 .navbar{
     background-color: #004C99!important;
+    height: 70px;
 }
 
 #cart-total{
@@ -13,6 +14,10 @@
 	border-radius: 50%;
 	font-size: 12px;
     
+}
+
+.card-img-top{
+    max-width: 150px;
 }
 
 .navbar-brand{
@@ -88,6 +93,7 @@
     background-color: white;
     border: solid 1px #FFA500;
 }
+
 
 #btn-checkout{
     background-color:#004C99;

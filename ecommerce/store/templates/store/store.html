@@ -2,41 +2,21 @@
 {% load static %}
 {% block content %}
     <div class="row">
+        {% for produto in produtos %}
         <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'store/images/mousepad.png' %}" class="card-img-top" alt="...">
+            <div class="card my-lg-5" style="width: 18rem;">
+                <div class="d-flex justify-content-center my-2">
+                    <img src="{{ produto.imagemURL }}" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">{{ produto.nome }}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <button class="btn btn-car">Add Carrinho</button>
                     <a href="#" class="btn btn-view">Ver</a>
-                    <h7 id="price">R$20,02</h7>
+                    <h7 id="price">{{ produto.preco|floatformat:2  }}</h7>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn btn-car">Add Carrinho</button>
-                    <a href="#" class="btn btn-view">Ver</a>
-                    <h7 id="price">R$20,00</h7>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn btn-car">Add Carrinho</button>
-                    <a href="#" class="btn btn-view">Ver</a>
-                    <h7 id="price">R$20,00</h7>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}

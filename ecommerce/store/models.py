@@ -14,10 +14,18 @@ class Produto(models.Model):
     nome = models.CharField(max_length=200, null=True)
     preco = models.FloatField()
     digital = models.BooleanField(default=False, null=True, blank=False)
-    #imagem
+    imagem = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.nome
+    
+    @property
+    def imagemURL(self):
+        try:
+            url = self.imagem.url
+        except:
+            url = ''
+        return url
 
 class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, blank=True, null=True)
@@ -36,6 +44,11 @@ class ItemPedido(models.Model):
 
     #def__str__(self):
         #return self.produto.nome
+
+    @property
+    def valor_total(self):
+        total = self.produto.preco * self.quantidade
+        return total
 
 class EnderecoEntrega(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, blank=True, null=True)
