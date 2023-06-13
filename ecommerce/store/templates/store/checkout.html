@@ -51,23 +51,25 @@
                 <hr>
                 <h4 class="card-title">Resumo da pedido</h4>
                 <hr>
-                <div class="info3">
-                    <div>
-                        <img class="row-img" src="{% static 'store/images/mousepad.png' %}" alt="">
+                {% for item in itens %}
+                    <div class="info3">
+                        <div>
+                            <img class="row-img" src="{{ item.produto.imagemURL }}" alt="">
+                        </div>
+                        <div>
+                            <p>{{ item.produto.nome }}</p>
+                        </div>
+                        <div>
+                            <p>R${{ item.produto.preco|floatformat:2 }}</p>
+                        </div>
+                        <div>
+                            <p>x{{ item.quantidade }}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>Produto1</p>
-                    </div>
-                    <div>
-                        <p>R$ 20,00</p>
-                    </div>
-                    <div>
-                        <p>2x</p>
-                    </div>
-                </div>
+                {% endfor %}
                 <div class="info4">
-                    <div>Itens:</div>
-                    <div>Total: R$</div>
+                    <div>Itens: {{ pedido.valor_total_itens }}</div>
+                    <div>Total: R${{ pedido.valor_total_carrinho|floatformat:2 }}</div>
                 </div>
             </div>
         </div>

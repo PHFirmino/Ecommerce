@@ -36,6 +36,19 @@ class Pedido(models.Model):
     def __str__(self):
         return str(self.id)
     
+
+    @property
+    def valor_total_carrinho(self):
+        itempedido = self.itempedido_set.all()
+        total = sum([item.valor_total for item in itempedido])
+        return total
+    
+    @property
+    def valor_total_itens(self):
+        itempedido = self.itempedido_set.all()
+        total = sum([item.quantidade for item in itempedido])
+        return total
+
 class ItemPedido(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.SET_NULL, blank=True, null=True)
     pedido = models.ForeignKey(Pedido, on_delete=models.SET_NULL, blank=True, null=True)

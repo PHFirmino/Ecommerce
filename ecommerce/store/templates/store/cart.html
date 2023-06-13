@@ -11,8 +11,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Itens: 3</th>
-                                <th scope="col">Total: R$40,00</th>
+                                <th scope="col">Itens: {{ pedido.valor_total_itens }}</th>
+                                <th scope="col">Total: R${{ pedido.valor_total_carrinho|floatformat:2 }}</th>
                                 <th scope="col"><a  style="float:right; margin:5px;" class="btn" id="btn-checkout" href="{% url 'checkout' %}">Checkout</a></th>
                             </tr>
                         </thead>
