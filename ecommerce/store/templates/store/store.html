@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ produto.nome }}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn btn-car">Add Carrinho</button>
+                    <button data-produto={{produto.id}} class="btn btn-car att-cart" data-acao="add">Add Carrinho</button>
                     <a href="#" class="btn btn-view">Ver</a>
                     <h7 id="price">{{ produto.preco|floatformat:2  }}</h7>
                 </div>
