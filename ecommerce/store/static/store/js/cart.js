@@ -29,11 +29,12 @@ function attPedidoUser(produtoID, produtoAcao){
         body:JSON.stringify({'produtoID':produtoID, 'produtoAcao': produtoAcao})
     })
     
-    .then((response) =>{
+    .then((response) => {
         return response.json()
     })
     
     .then((data) => {
-        console.log('Dados:',data)
+        console.log('Dados:', data)
+        location.reload()
     } )
 }

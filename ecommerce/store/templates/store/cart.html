@@ -45,11 +45,11 @@
                                         <span id="number-quantity" class="mx-2">{{ item.quantidade }}</span>
                                     </div>
                                     <div class="icons-up-down">
-                                        <div class="sort-up">
-                                            <i class="fa-solid fa-sort-up"></i>
+                                        <div class="pai_img_cart1">
+                                            <img data-produto="{{produto.id}}" src="{% static 'store/images/flecha_cima.png' %}" class="img_cart att-cart" data-acao="add" alt="">
                                         </div>
-                                        <div class="sort-down">
-                                            <i class="fa-solid fa-sort-down"></i>
+                                        <div class="pai_img_cart">
+                                            <img data-produto="{{produto.id}}" src="{% static 'store/images/flecha_baixo.png' %}" class="img_cart att-cart" data-acao="remover" alt="">
                                         </div>
                                     </div>
                                 </td>

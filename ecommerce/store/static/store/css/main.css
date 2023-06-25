@@ -17,7 +17,8 @@
 }
 
 .card-img-top{
-    max-width: 150px;
+    width: 150px;
+    height: 150px;
 }
 
 .navbar-brand{
@@ -121,14 +122,24 @@
     align-items: center;
 }
 
-.icons-up-down{
+.img_cart{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+}
+
+.pai_img_cart1{
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.pai_img_cart{
     position: relative;
 }
 
-.sort-down{
+.img_cart{
     position: absolute;
     top: 0;
-    margin-top: 3px;
 }
 
 .info-user{

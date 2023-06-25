@@ -8,8 +8,19 @@ from .models import *
 # Create your views here.
 
 def store(request):
+
+    if request.user.is_authenticated:
+        cliente = request.user.cliente
+        pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
+        itens = pedido.itempedido_set.all()
+        itensCarrinho = pedido.valor_total_itens
+    else:
+        itens = []
+        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
+        itensCarrinho = pedido['valor_total_itens']
+
     produtos = Produto.objects.all()
-    context = {'produtos':produtos}
+    context = {'produtos':produtos, 'itensCarrinho':itensCarrinho}
     return render(request, 'store/store.html', context)
 
 def cart(request):
@@ -18,11 +29,13 @@ def cart(request):
         cliente = request.user.cliente
         pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
         itens = pedido.itempedido_set.all()
+        itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
+        itensCarrinho = pedido['valor_total_itens']
         pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
 
-    context = {'itens': itens, 'pedido': pedido}
+    context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
 
     return render(request, 'store/cart.html', context)
 
@@ -31,11 +44,13 @@ def checkout(request):
         cliente = request.user.cliente
         pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
         itens = pedido.itempedido_set.all()
+        itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
+        itensCarrinho = pedido['valor_total_itens']
         pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
 
-    context = {'itens': itens, 'pedido': pedido}
+    context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
 
     return render(request, 'store/checkout.html', context) 
 
@@ -59,7 +74,7 @@ def attItem(request):
 
     itemPedido.save()
 
-    if itemPedido <=0:
+    if itemPedido.quantidade <= 0:
         itemPedido.delete()
 
     return JsonResponse("Item foi adicionado", safe=False)
