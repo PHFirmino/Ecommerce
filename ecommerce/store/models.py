@@ -36,6 +36,15 @@ class Pedido(models.Model):
     def __str__(self):
         return str(self.id)
     
+    @property
+    def envio(self):
+        envio = False
+        itempedido = self.itempedido_set.all()
+        for i in itempedido:
+            if i.produto.digital == False:
+                envio = True
+        return envio
+    
 
     @property
     def valor_total_carrinho(self):

@@ -184,10 +184,24 @@ input{
 }
 
 .paypal{
-    padding: 10px;
     margin-top: 10px;
-    width: 300px;
-    display: none;
+    display: none!important;
+}
+
+#fazer-pagamento{
+    border: solid red 1px;
+    background-color: red;
+    color: white;
+    border-radius: 7px;
+    padding: 6px;
+}
+
+#fazer-pagamento:hover{
+    border: solid red 1px;
+    background-color: white;
+    color: red;
+    border-radius: 7px;
+    padding: 6px;
 }
 
 .info3{

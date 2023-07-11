@@ -16,7 +16,7 @@ def store(request):
         itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
+        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
         itensCarrinho = pedido['valor_total_itens']
 
     produtos = Produto.objects.all()
@@ -32,8 +32,8 @@ def cart(request):
         itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
+        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
         itensCarrinho = pedido['valor_total_itens']
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
 
     context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
 
@@ -47,8 +47,8 @@ def checkout(request):
         itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
+        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
         itensCarrinho = pedido['valor_total_itens']
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
 
     context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
 
@@ -78,3 +78,7 @@ def attItem(request):
         itemPedido.delete()
 
     return JsonResponse("Item foi adicionado", safe=False)
+
+def processoDoPedido(request):
+    print('Dados: ', request.body)
+    return JsonResponse("O pagamento foi realizado", safe=False)

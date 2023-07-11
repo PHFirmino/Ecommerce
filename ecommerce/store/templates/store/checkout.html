@@ -3,10 +3,10 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-6">
-        <div class="card" style="width: 35rem;">
+        <div class="card" style="width: 35rem;"  id="pacoteForm">
             <div class="card-body">
                 <form action="" id="form">
-                    <div class="info-user">
+                    <div class="info-user" id="info-user">
                         <div>
                             <input required type="text" name="name" id="name" placeholder="Digite seu nome">
                         </div>
@@ -77,9 +77,91 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-        <div class="card paypal">
-            <small>Opções Paypal</small>
+        <div class="card paypal" id="paypal-info">
+            <div class="d-flex justify-content-around align-items-center p-3">
+                <span>Opções Paypal</span>
+                <button id="fazer-pagamento">Fazer Pagamento</button>
+            </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var envio = '{{pedido.envio}}'
+    var total = '{{pedido.valor_total_carrinho|floatformat:2}}'
+
+    if(envio == 'False'){
+        document.getElementById('shipping-info').innerHTML = ''
+    }
+
+    if(user != 'AnonymousUser'){
+        document.getElementById('info-user').innerHTML = ''
+    }
+
+    if(envio == 'False' && user != 'AnonymousUser'){
+        document.getElementById('pacoteForm').classList.add("paypal")
+        document.getElementById('paypal-info').classList.remove("paypal")
+    }
+
+    var form = document.getElementById('form')
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('form submit')
+        document.getElementById('continue').classList.add('paypal')
+        document.getElementById('paypal-info').classList.remove('paypal')
+    })
+
+    document.getElementById('fazer-pagamento').addEventListener('click', function(e){
+        submitDeDados()
+    })
+
+    function submitDeDados(){
+        console.log('Botão de pagamento clicado')
+
+        var dadosDoUser = {
+            'name': null,
+            'email': null,
+            'total': total,
+        }
+
+        var dadosDeEnvio = {
+            'address' : null,
+            'city' : null,
+            'state' : null,
+            'zipcode' : null,
+        }
+
+        if(envio != 'False'){
+            dadosDeEnvio.address = form.address.value
+            dadosDeEnvio.city = form.city.value
+            dadosDeEnvio.state = form.state.value
+            dadosDeEnvio.zipcode = form.zipcode.value
+        }
+
+        if(user == 'AnonymousUser'){
+            dadosDoUser.name = form.name.value
+            dadosDoUser.email = form.email.value
+        }
+    }
+
+    var url = '/processo_do_pedido/'
+
+    fetch(url,{
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'form':dadosDoUser, 'envio':dadosDeEnvio}),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Sucesso:', data)
+        alert('Transição completa')
+        window.location.href = "{% url 'store' %}"
+    })
+
+</script>
+
 {% endblock %}
