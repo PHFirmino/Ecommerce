@@ -16,11 +16,7 @@ def store(request):
         itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
-<<<<<<< HEAD
         pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
-=======
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
->>>>>>> a86bbfc1860337376379261913b264ad06754bb7
         itensCarrinho = pedido['valor_total_itens']
 
     produtos = Produto.objects.all()
@@ -36,13 +32,8 @@ def cart(request):
         itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
-<<<<<<< HEAD
         pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
         itensCarrinho = pedido['valor_total_itens']
-=======
-        itensCarrinho = pedido['valor_total_itens']
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
->>>>>>> a86bbfc1860337376379261913b264ad06754bb7
 
     context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
 
@@ -56,13 +47,8 @@ def checkout(request):
         itensCarrinho = pedido.valor_total_itens
     else:
         itens = []
-<<<<<<< HEAD
         pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
         itensCarrinho = pedido['valor_total_itens']
-=======
-        itensCarrinho = pedido['valor_total_itens']
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0}
->>>>>>> a86bbfc1860337376379261913b264ad06754bb7
 
     context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
 
