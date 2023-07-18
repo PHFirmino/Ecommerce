@@ -7,12 +7,36 @@ for(var i = 0; i < attbotao.length; i++){
         console.log('produtoID:',produtoId, 'produtoAcao:',produtoAcao)
 
         if(user === 'AnonymousUser'){
-            console.log('Não está logado')
+            addCookieItem(produtoId, produtoAcao)
         }else{
             attPedidoUser(produtoId, produtoAcao)
         }
     })
 } 
+
+function addCookieItem(produtoID, produtoAcao){
+    console.log("O usuário não está logado")
+
+    if(produtoAcao == 'add'){
+        if(carrinho[produtoID] == undefined){
+            carrinho[produtoID] = {'quantidade': 1}
+        }else{
+            carrinho[produtoID]['quantidade'] += 1
+        }
+    }
+
+    if(produtoAcao == 'remover'){
+        carrinho[produtoID]['quantidade'] -= 1
+        if(carrinho[produtoID]['quantidade'] <= 0){
+            console.log('Item removido')
+            delete carrinho[produtoID]
+        }
+    }
+    
+    console.log('Carrinho: ', carrinho)
+    document.cookie = 'carrinho=' + JSON.stringify(carrinho) + ";domain;path=/"
+    location.reload()
+}
 
 
 function attPedidoUser(produtoID, produtoAcao){

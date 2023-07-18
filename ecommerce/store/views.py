@@ -1,23 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
-
+import datetime
 
 from .models import *
+from .utils import cookieCart, cartDados, pedidoVisitante
 
 # Create your views here.
 
 def store(request):
 
-    if request.user.is_authenticated:
-        cliente = request.user.cliente
-        pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
-        itens = pedido.itempedido_set.all()
-        itensCarrinho = pedido.valor_total_itens
-    else:
-        itens = []
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
-        itensCarrinho = pedido['valor_total_itens']
+    dados = cartDados(request)
+    itensCarrinho = dados['itensCarrinho']
 
     produtos = Produto.objects.all()
     context = {'produtos':produtos, 'itensCarrinho':itensCarrinho}
@@ -25,33 +19,23 @@ def store(request):
 
 def cart(request):
 
-    if request.user.is_authenticated:
-        cliente = request.user.cliente
-        pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
-        itens = pedido.itempedido_set.all()
-        itensCarrinho = pedido.valor_total_itens
-    else:
-        itens = []
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
-        itensCarrinho = pedido['valor_total_itens']
+    dados = cartDados(request)
+    itensCarrinho = dados['itensCarrinho']
+    itens = dados['itens']
+    pedido = dados['pedido']
 
     context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
-
     return render(request, 'store/cart.html', context)
 
+
 def checkout(request):
-    if request.user.is_authenticated:
-        cliente = request.user.cliente
-        pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
-        itens = pedido.itempedido_set.all()
-        itensCarrinho = pedido.valor_total_itens
-    else:
-        itens = []
-        pedido = {'valor_total_itens': 0, 'valor_total_carrinho':0, 'envio': False}
-        itensCarrinho = pedido['valor_total_itens']
+        
+    dados = cartDados(request)
+    itensCarrinho = dados['itensCarrinho']
+    itens = dados['itens']
+    pedido = dados['pedido']
 
     context = {'itens': itens, 'pedido': pedido, 'itensCarrinho':itensCarrinho}
-
     return render(request, 'store/checkout.html', context) 
 
 def attItem(request):
@@ -80,5 +64,31 @@ def attItem(request):
     return JsonResponse("Item foi adicionado", safe=False)
 
 def processoDoPedido(request):
-    print('Dados: ', request.body)
+    transacao_id = datetime.datetime.now().timestamp()
+    dados = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        cliente = request.user.cliente
+        pedido, created = Pedido.objects.get_or_create(cliente=cliente, completo=False)
+
+    else:
+        cliente, pedido = pedidoVisitante(request, dados)
+            
+    total = float(dados['form']['total'].replace(',', '.'))
+    pedido.transacao_id = transacao_id
+
+    if total == float(pedido.valor_total_carrinho):
+        pedido.completo = True
+        pedido.save()
+    
+    if pedido.envio == True:
+        EnderecoEntrega.objects.create(
+            cliente = cliente,
+            pedido = pedido,
+            endereco = dados['envio']['address'],
+            cidade = dados['envio']['city'],
+            estado = dados['envio']['state'],
+            codigo_postal = dados['envio']['zipcode'], 
+        )
+    
     return JsonResponse("O pagamento foi realizado", safe=False)

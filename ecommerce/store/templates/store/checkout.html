@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-6" >
         <div class="card" style="width: 35rem;"  id="pacoteForm">
             <div class="card-body">
                 <form action="" id="form">
@@ -16,7 +16,7 @@
                     </div>
                     <div id="shipping-info">
                         <hr>
-                        <p>Endereço de Entrega</p>
+                        <p><strong>Endereço de Entrega</strong></p>
                         <hr>
                         <div class="info-user" id="info-user-center" >
                             <div>
@@ -76,19 +76,56 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-6" id="pagamento">
         <div class="card paypal" id="paypal-info">
             <div class="d-flex justify-content-around align-items-center p-3">
-                <span>Opções Paypal</span>
+                <span>Pagamento</span>
                 <button id="fazer-pagamento">Fazer Pagamento</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+<script>
+
+    //var total = '{{pedido.valor_total_carrinho}}'
+
+    paypal.Buttons({
+
+        style: {
+            color:  'blue',
+            shape:  'rect',
+        },
+
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '0.01'
+                        //value: 'parseFloat(total).toFixed(2)'
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Show a success message to the buyer
+            alert("Transição completa de" + details.payer.name.given_name)
+                //submitDeDados()
+            });
+        }
+
+    }).render('#paypal-button-container');
+</script>-->
+
 <script type="text/javascript">
     var envio = '{{pedido.envio}}'
-    var total = '{{pedido.valor_total_carrinho|floatformat:2}}'
+    var total = '{{pedido.valor_total_carrinho}}'
 
     if(envio == 'False'){
         document.getElementById('shipping-info').innerHTML = ''
@@ -143,7 +180,7 @@
             dadosDoUser.name = form.name.value
             dadosDoUser.email = form.email.value
         }
-    }
+    
 
     var url = '/processo_do_pedido/'
 
@@ -159,8 +196,13 @@
     .then((data) => {
         console.log('Sucesso:', data)
         alert('Transição completa')
+        carrinho = {}
+                console.log('Carrinho foi criado')
+                document.cookie = 'carrinho=' + JSON.stringify(carrinho) + ";domain;path=/"
         window.location.href = "{% url 'store' %}"
     })
+
+}
 
 </script>
 

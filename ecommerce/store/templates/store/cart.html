@@ -1,7 +1,7 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-    <div class="row">
+    <div class="row container">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -12,7 +12,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Itens: {{ pedido.valor_total_itens }}</th>
-                                <th scope="col">Total: R${{ pedido.valor_total_carrinho|floatformat:2 }}</th>
+                                <th scope="col">Total do Carrinho: R${{ pedido.valor_total_carrinho|floatformat:2 }}</th>
                                 <th scope="col"><a  style="float:right; margin:5px;" class="btn" id="btn-checkout" href="{% url 'checkout' %}">Checkout</a></th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                             <tr class="tr" >
                                 <td><img src="{{ item.produto.imagemURL }}" class="row-img" alt="..."></td>
                                 <td scope="row"><strong>{{ item.produto.nome }}</strong></td>
-                                <td>{{ item.produto.preco|floatformat:2 }}</td>
+                                <td>R${{ item.produto.preco|floatformat:2 }}</td>
                                 <td id="info2">
                                     <div class="number">
                                         <span id="number-quantity" class="mx-2">{{ item.quantidade }}</span>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ item.valor_total|floatformat:2 }}</td>
+                                <td>R${{ item.valor_total|floatformat:2 }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
