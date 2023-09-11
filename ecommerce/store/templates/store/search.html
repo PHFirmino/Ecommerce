@@ -22,23 +22,27 @@
     {% endif %}
     <h1 class="text-center mt-5">Produtos</h1>
     <div class="row">
-        {% for produto in produtos %}
-            <div class="col-lg-4">
-                <div class="card my-lg-5" style="width: 18rem;">
-                    <div class="d-flex justify-content-center my-2">
-                        <img src="{{ produto.imagemURL }}" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ produto.nome }}</h5>
-                        <p><strong>{{ produto.discricao }}</strong></p>
-                        <h7 id="price"><strong> R${{ produto.preco|floatformat:2 }}</strong></h7>
-                        <div class="d-grid gap-2 mt-2">
-                            <button data-produto="{{produto.id}}" class="btn btn-car att-cart" data-acao="add">Adicionar <i id="icone-add" class="fa-sharp fa-solid fa-cart-shopping mx-1 my-1"></i></button>
+        {% if produtos %}
+            {% for produto in produtos %}
+                <div class="col-lg-4">
+                    <div class="card my-lg-5" style="width: 18rem;">
+                        <div class="d-flex justify-content-center my-2">
+                            <img src="{{ produto.imagemURL }}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produto.nome }}</h5>
+                            <p><strong>{{ produto.discricao }}</strong></p>
+                            <h7 id="price"><strong> R${{ produto.preco|floatformat:2 }}</strong></h7>
+                            <div class="d-grid gap-2 mt-2">
+                                <button data-produto="{{produto.id}}" class="btn btn-car att-cart" data-acao="add">Adicionar <i id="icone-add" class="fa-sharp fa-solid fa-cart-shopping mx-1 my-1"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h3 class="text-center text-danger">NÃO TEMOS ESSE PRODUTO PESQUISADO</h3>
+        {% endif %}
     </div>
 {% endblock %}
 {% block novidade %}
@@ -54,5 +58,3 @@
         {% endfor %}
     </div>
 {% endblock novidade %}
-
-

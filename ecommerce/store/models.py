@@ -14,6 +14,37 @@ class Produto(models.Model):
     nome = models.CharField(max_length=200, null=True)
     preco = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
+    discricao = models.TextField(null=True)
+    imagem = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
+    
+    @property
+    def imagemURL(self):
+        try:
+            url = self.imagem.url
+        except:
+            url = ''
+        return url
+    
+class Banners(models.Model):
+    nome = models.CharField(max_length=250, null=True)
+    imagem = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
+    
+    @property
+    def imagemURL(self):
+        try:
+            url = self.imagem.url
+        except:
+            url = ''
+        return url
+    
+class Informacao(models.Model):
+    nome = models.CharField(max_length=250, null=True)
     imagem = models.ImageField(null=True, blank=True)
 
     def __str__(self):

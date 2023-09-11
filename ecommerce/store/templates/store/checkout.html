@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-6" >
-        <div class="card" style="width: 35rem;"  id="pacoteForm">
+        <div class="card" style="width: 35rem;" id="pacoteForm">
             <div class="card-body">
                 <form action="" id="form">
                     <div class="info-user" id="info-user">
@@ -20,7 +20,7 @@
                         <hr>
                         <div class="info-user" id="info-user-center" >
                             <div>
-                                <input type="text" name="address" id="address" placeholder="Digite seu endereço">
+                                <input type="text" name="address" id="address" placeholder="Digite a rua">
                             </div>
                             <div>
                                 <input type="text" name="city" id="city" placeholder="Digite sua cidade">
@@ -34,11 +34,31 @@
                                 <input type="text" name="zipcode" id="zipcode" placeholder="Digite seu código postal">
                             </div>
                         </div>
-                        <div>
-                            <input type="text" name="country" id="coutry" placeholder="Digite o código">
-                        </div>
                     </div>
                     <hr>
+                    <div class="mb-4">
+                        <p><strong>Cartão</strong></p>
+                        <hr>
+                        <div class="info-user" id="info-user-center" >
+                            <div>
+                                <input required type="text" name="" id="" placeholder="Número do cartão">
+                            </div>
+                            <div>
+                                <input required type="text" name="" id="" placeholder="Código de segurança">
+                            </div>
+                        </div>
+                        <div class="info-user">
+                            <div>
+                                <div>
+                                    <label for="">Validade</label>
+                                </div>
+                                <input required type="date">
+                            </div>
+                            <div>
+                                <input required type="text" name="" id="" placeholder="Nome impresso no cartão">
+                            </div>
+                        </div>
+                    </div>
                     <input type="submit" name="continue" id="continue" class="btn btn-block w-100" value="Continuar">
                 </form>
             </div>
@@ -76,7 +96,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6" id="pagamento">
+    <div class="col-lg-6 mt-5" id="pagamento">
         <div class="card paypal" id="paypal-info">
             <div class="d-flex justify-content-around align-items-center p-3">
                 <span>Pagamento</span>
@@ -85,43 +105,6 @@
         </div>
     </div>
 </div>
-
-<!-- <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-
-<script>
-
-    //var total = '{{pedido.valor_total_carrinho}}'
-
-    paypal.Buttons({
-
-        style: {
-            color:  'blue',
-            shape:  'rect',
-        },
-
-        // Set up the transaction
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '0.01'
-                        //value: 'parseFloat(total).toFixed(2)'
-                    }
-                }]
-            });
-        },
-
-        // Finalize the transaction
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                // Show a success message to the buyer
-            alert("Transição completa de" + details.payer.name.given_name)
-                //submitDeDados()
-            });
-        }
-
-    }).render('#paypal-button-container');
-</script>-->
 
 <script type="text/javascript">
     var envio = '{{pedido.envio}}'

@@ -14,8 +14,23 @@ def store(request):
     itensCarrinho = dados['itensCarrinho']
 
     produtos = Produto.objects.all()
-    context = {'produtos':produtos, 'itensCarrinho':itensCarrinho}
+    banners = Banners.objects.all()
+    informacao = Informacao.objects.all()
+    context = {'produtos':produtos, 'itensCarrinho':itensCarrinho, 'banners':banners, 'informacao':informacao}
     return render(request, 'store/store.html', context)
+
+def search(request):
+    
+    dados = cartDados(request)
+    itensCarrinho = dados['itensCarrinho']
+
+    banners = Banners.objects.all()
+    informacao = Informacao.objects.all()
+    search = request.GET.get('search','')
+    produtos = Produto.objects.filter(nome__icontains= search)
+
+    context = {'itensCarrinho':itensCarrinho, 'banners':banners, 'informacao':informacao, 'search':search, 'produtos':produtos}
+    return render(request, 'store/search.html', context)
 
 def cart(request):
 

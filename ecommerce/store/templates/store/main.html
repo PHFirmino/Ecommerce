@@ -54,16 +54,18 @@
     <title>ALL TECH</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'store' %}"><img id="logo" src="{% static '/store/images/Logotipo para loja de informática e computação.png' %}" alt=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div id="formsearch">
+                <form method="get" action="/search/">
+                    <input id="search" name="search" type="search" placeholder="Procurar" aria-label="Search">
+                    <a href="{% url 'search' %}"><i id="searchbtn" class="fa-solid fa-magnifying-glass">  </i></a>
+                </form>
+            </div>
             <div class="form-inline my-2 my-lg-0 mx-3">
-                <a href="#"class="icon-redes"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                <a href="#"class="icon-redes d-inline-block  mx-3"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="#"class="icon-redes"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="https://facebook.com/"class="icon-redes"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="https://Instagram.com/"class="icon-redes d-inline-block  mx-3"><i class="fa-brands fa-instagram"></i> Instagram</a>
                 <a href="{% url 'cart' %}" class="d-inline-block mr-5">
                     <i class="fa-sharp fa-solid fa-cart-shopping mx-1 my-3"></i>
                 </a>
@@ -78,6 +80,11 @@
         
         {% endblock content %}
     </div>
+    <div>
+        {% block novidade %}
+        
+        {% endblock novidade %}
+    </div>
     
     <footer class="footer">
         <div class="container">
@@ -88,9 +95,8 @@
                     <p>Telefone: (21) 1234-5678</p>
                     <p>Email: alltech@exemplo.com</p>
                     <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="https://facebook.com/"><i class="fab fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="https://instagram.com/"><i class="fab fa-twitter"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 pt-2">
@@ -98,8 +104,6 @@
                     <ul class="list-unstyled">
                         <li><a href="{% url 'store' %}">Página Inicial</a></li>
                         <li><a href="{% url 'store' %}">Produtos</a></li>
-                        <li><a href="#">Termos de Serviço</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 pt-2">
