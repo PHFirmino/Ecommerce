@@ -31,13 +31,13 @@ h1{
 }
 
 #formsearch{
-    margin-left: 730px;
+    margin-left: 720px;
 }
 
 #searchbtn{
-    color: white;
-    display: inline-block;
-    margin: 0 8px 0 2px;
+    height: 38px;
+    border: none;
+    background-color: #004C99;
 }
 
 #cart-total{
